@@ -27,6 +27,7 @@ class Students
             password=:password,
             dNo=:dNo";
 
+
         $statement = $this->conn->prepare($sql);
 
         $this->name = htmlspecialchars(strip_tags($this->name));
@@ -46,5 +47,22 @@ class Students
         };
         printf("Error: %s \n", $statement->error);
         return false;
+    }
+
+    public function loginStudent()
+    {
+        $sql = "SELECT * FROM  Students WHERE email=:email and password=:password";
+
+        $statement = $this->conn->prepare($sql);
+
+        $this->email = htmlspecialchars(strip_tags($this->email));
+        $this->password = htmlspecialchars(strip_tags($this->password));
+
+        $statement->bindParam(':email', $this->email);
+        $statement->bindParam(':password', $this->password);
+
+        $statement->execute();
+
+        return $statement;
     }
 }
