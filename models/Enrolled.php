@@ -3,7 +3,6 @@
 class Enrolled
 {
     private $conn;
-    private $table = 'Enrolled';
 
     public $date;
     public $rollNo;
