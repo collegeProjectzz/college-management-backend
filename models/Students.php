@@ -103,4 +103,18 @@ class Students
         printf("Error: %s \n", $stmt->error);
         return false;
     }
+
+    public function  removeStudent()
+    {
+        $query = 'DELETE FROM Students WHERE rollNo=:rollNo';
+        $stmt = $this->conn->prepare($query);
+        $this->rollNo = htmlspecialchars(strip_tags($this->rollNo));
+        $stmt->bindParam(':rollNo', $this->rollNo);
+
+        if ($stmt->execute()) {
+            return true;
+        };
+        printf("Error: %s \n", $stmt->error);
+        return false;
+    }
 }
