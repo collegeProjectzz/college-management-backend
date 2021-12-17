@@ -6,33 +6,29 @@ header('Access-Control-Allow-Methods:POST');
 header('Access-Control-Allow-Headers:Access-Control-Allow-Headers,Content-Type,application/json,Access-Control-Allow-Methods,Authorization,X-Requested-With');
 
 include_once '../../config/DB.php';
-include_once '../../models/Students.php';
+include_once '../../models/Faculty.php';
 
 $database = new DB();
 $db = $database->connect();
 
-$post = new Students($db);
+$post = new Faculty($db);
 
-//get raw posted data
 $data = json_decode(file_get_contents("php://input"));
 
-$post->name = $data->name;
-$post->email = $data->email;
-$post->phone = $data->phone;
-$post->password = $data->password;
+$post->fName = $data->fName;
+$post->fEmail = $data->fEmail;
 $post->dNo = $data->dNo;
 
-
-if ($post->registerStudent()) {
+if ($post->registerFaculty()) {
     echo json_encode(
         array(
-            'message' => 'Student created successfully c'
+            'message' => 'Faculty created successfully c'
         )
     );
 } else {
     echo json_encode(
         array(
-            'message' => 'Error while signing up student'
+            'message' => 'Error while signing up faculty'
         )
     );
 }
