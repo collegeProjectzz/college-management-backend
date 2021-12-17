@@ -57,4 +57,39 @@ class Faculty
 
         return $statement;
     }
+
+    public function editFaculty()
+    {
+        $sql = "
+            UPDATE 
+                Faculty 
+            SET 
+                fName=:fName,
+                fEmail=:fEmail,
+                fPassword=:fPassword,
+                dNo=:dNo
+            WHERE 
+                fId=:fId;
+        ";
+
+        $stmt = $this->conn->prepare($sql);
+
+        $this->fName = htmlspecialchars(strip_tags($this->fName));
+        $this->fEmail = htmlspecialchars(strip_tags($this->fEmail));
+        $this->fPassword = htmlspecialchars(strip_tags($this->fPassword));
+        $this->dNo = htmlspecialchars(strip_tags($this->dNo));
+        $this->fId = htmlspecialchars(strip_tags($this->fId));
+
+        $stmt->bindParam(':fName', $this->fName);
+        $stmt->bindParam(':fEmail', $this->fEmail);
+        $stmt->bindParam(':fPassword', $this->fPassword);
+        $stmt->bindParam(':dNo', $this->dNo);
+        $stmt->bindParam(':fId', $this->fId);
+
+        if ($stmt->execute()) {
+            return true;
+        };
+        printf("Error: %s \n", $stmt->error);
+        return false;
+    }
 }
