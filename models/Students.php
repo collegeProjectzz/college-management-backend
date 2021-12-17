@@ -65,4 +65,42 @@ class Students
 
         return $statement;
     }
+
+    public function editStudent()
+    {
+        $sql = "
+            UPDATE 
+                Students 
+            SET 
+                name=:name,
+                email=:email,
+                phone=:phone,
+                password=:password,
+                dNo=:dNo
+            WHERE 
+                rollNo=:rollNo;
+        ";
+
+        $stmt = $this->conn->prepare($sql);
+
+        $this->name = htmlspecialchars(strip_tags($this->name));
+        $this->email = htmlspecialchars(strip_tags($this->email));
+        $this->phone = htmlspecialchars(strip_tags($this->phone));
+        $this->password = htmlspecialchars(strip_tags($this->password));
+        $this->dNo = htmlspecialchars(strip_tags($this->dNo));
+        $this->rollNo = htmlspecialchars(strip_tags($this->rollNo));
+
+        $stmt->bindParam(':name', $this->name);
+        $stmt->bindParam(':email', $this->email);
+        $stmt->bindParam(':phone', $this->phone);
+        $stmt->bindParam(':password', $this->password);
+        $stmt->bindParam(':dNo', $this->dNo);
+        $stmt->bindParam(':rollNo', $this->rollNo);
+
+        if ($stmt->execute()) {
+            return true;
+        };
+        printf("Error: %s \n", $stmt->error);
+        return false;
+    }
 }
