@@ -18,6 +18,7 @@ $data = json_decode(file_get_contents("php://input"));
 $post->fName = $data->fName;
 $post->fEmail = $data->fEmail;
 $post->dNo = $data->dNo;
+$post->fPassword = $data->fPassword;
 
 if ($post->registerFaculty()) {
     echo json_encode(

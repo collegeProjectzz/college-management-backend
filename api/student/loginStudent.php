@@ -22,7 +22,7 @@ $post->password = $data->password;
 $res = $post->loginStudent();
 $num = $res->rowCount();
 
-if ($num == 1) {
+if ($num = 1) {
     echo json_encode(
         array(
             'message' => 'Student logged in sucessfully'

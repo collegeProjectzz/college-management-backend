@@ -21,7 +21,8 @@ class Faculty
             INSERT INTO Faculty SET
             fName=:fName,
             fEmail=:fEmail,
-            dNo=:dNo
+            dNo=:dNo,
+            fPassword=:fPassword
         ";
 
         $statement = $this->conn->prepare($sql);
@@ -29,10 +30,12 @@ class Faculty
         $this->fName = htmlspecialchars(strip_tags($this->fName));
         $this->fEmail = htmlspecialchars(strip_tags($this->fEmail));
         $this->dNo = htmlspecialchars(strip_tags($this->dNo));
+        $this->fPassword = htmlspecialchars(strip_tags($this->fPassword));
 
         $statement->bindParam(':fName', $this->fName);
         $statement->bindParam(':fEmail', $this->fEmail);
         $statement->bindParam(':dNo', $this->dNo);
+        $statement->bindParam(':fPassword', $this->fPassword);
 
         if ($statement->execute()) {
             return true;
