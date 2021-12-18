@@ -11,6 +11,7 @@ $db = $database->connect();
 
 $post = new Course($db);
 $result = $post->getAllCourses();
+
 $num = $result->rowCount();
 if ($num > 0) {
     $posts_arr = array();
@@ -24,8 +25,8 @@ if ($num > 0) {
             'fId' => $fId,
         );
         array_push($posts_arr['data'], $post_item);
-        echo json_encode($posts_arr);
     }
+    echo json_encode($posts_arr);
 } else {
     echo json_encode(array('message' => "no courses found"));
 }
