@@ -32,33 +32,35 @@ class Exam
         return $statement;
     }
 
-    public function insertITMarks()
+    public function insertItMarks()
     {
         $sql = "
-        UPDATE 
-            Exam 
+        INSERT INTO 
+            Exam
         SET 
             cId=:cId,
             it1=:it1,
-            it2=:it2 
-        WHERE rollNo=:rollNo;";
+            it2=:it2, 
+            rollNo=:rollNo
+        ";
 
-        $statement = $this->conn->prepare($sql);
+        $stmt = $this->conn->prepare($sql);
 
-        $this->rollNo = htmlspecialchars(strip_tags($this->rollNo));
         $this->cId = htmlspecialchars(strip_tags($this->cId));
         $this->it1 = htmlspecialchars(strip_tags($this->it1));
         $this->it2 = htmlspecialchars(strip_tags($this->it2));
+        $this->rollNo = htmlspecialchars(strip_tags($this->rollNo));
 
-        $statement->bindParam(':rollNo', $this->rollNo);
-        $statement->bindParam(':cId', $this->cId);
-        $statement->bindParam(':it1', $this->it1);
-        $statement->bindParam(':it2', $this->it2);
+        $stmt->bindParam(':cId', $this->cId);
+        $stmt->bindParam(':it1', $this->it1);
+        $stmt->bindParam(':it2', $this->it2);
+        $stmt->bindParam(':rollNo', $this->rollNo);
 
-        if ($statement->execute()) {
+        if ($stmt->execute()) {
             return true;
         };
-        printf("Error: %s \n", $statement->error);
+
+        printf("Error: %s \n", $stmt->error);
         return false;
     }
 }

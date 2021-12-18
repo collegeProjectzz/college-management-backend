@@ -1,4 +1,5 @@
 <?php
+
 header('Access-Control-Allow-Origin:*');
 header('Content-Type:application/json');
 header('Access-Control-Allow-Methods:POST');
@@ -14,22 +15,22 @@ $post = new Exam($db);
 
 $data = json_decode(file_get_contents("php://input"));
 
-$post->rollNo = $data->rollNo;
+
 $post->cId = $data->cId;
 $post->it1 = $data->it1;
 $post->it2 = $data->it2;
+$post->rollNo = $data->rollNo;
 
-
-if ($post->insertITMarks()) {
+if ($post->insertItMarks()) {
     echo json_encode(
         array(
-            'message' => 'Marks inserted successfully '
+            'message' => 'marks inserted successfully'
         )
     );
 } else {
     echo json_encode(
         array(
-            'message' => 'Error while inserting marks'
+            'message' => 'failed to insert marks'
         )
     );
 }

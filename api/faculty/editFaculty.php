@@ -16,6 +16,7 @@ $post = new Faculty($db);
 $data = json_decode(file_get_contents("php://input"));
 
 
+
 $post->fName = $data->fName;
 $post->fEmail = $data->fEmail;
 $post->fPassword = $data->fPassword;
