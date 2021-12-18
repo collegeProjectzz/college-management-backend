@@ -95,4 +95,16 @@ class Faculty
         printf("Error: %s \n", $stmt->error);
         return false;
     }
+
+    public function getSingleFaculty($fId)
+    {
+        $sql = "SELECT * FROM Faculty WHERE fId=$fId;";
+        $statement = $this->conn->prepare($sql);
+        $statement->execute();
+        $row = $statement->fetch(PDO::FETCH_ASSOC);
+        $this->fId = $row['fId'];
+        $this->fName = $row['fName'];
+        $this->fEmail = $row['fEmail'];
+        $this->dNo = $row['dNo'];
+    }
 }

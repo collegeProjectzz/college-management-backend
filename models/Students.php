@@ -51,17 +51,19 @@ class Students
 
     public function loginStudent()
     {
-        $sql = "SELECT * FROM  Students WHERE email=:email and password=:password";
+        $sql = "SELECT * FROM  Students WHERE rollNo=:rollNo and password=:password";
 
         $statement = $this->conn->prepare($sql);
 
-        $this->email = htmlspecialchars(strip_tags($this->email));
+
+        $this->rollNo = htmlspecialchars(strip_tags($this->rollNo));
         $this->password = htmlspecialchars(strip_tags($this->password));
 
-        $statement->bindParam(':email', $this->email);
+        $statement->bindParam(':rollNo', $this->rollNo);
         $statement->bindParam(':password', $this->password);
 
         $statement->execute();
+
 
         return $statement;
     }
@@ -116,5 +118,18 @@ class Students
         };
         printf("Error: %s \n", $stmt->error);
         return false;
+    }
+
+    public function getSingleStudent($rollNo)
+    {
+        $sql = "SELECT * FROM Students WHERE rollNo=$rollNo;";
+        $statement = $this->conn->prepare($sql);
+        $statement->execute();
+        $row = $statement->fetch(PDO::FETCH_ASSOC);
+        $this->rollNo = $row['rollNo'];
+        $this->name = $row['name'];
+        $this->email = $row['email'];
+        $this->phone = $row['phone'];
+        $this->dNo = $row['dNo'];
     }
 }
