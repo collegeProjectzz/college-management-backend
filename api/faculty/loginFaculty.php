@@ -22,8 +22,6 @@ $res = $post->loginFaculty();
 
 $num = $res->rowCount();
 if ($num == 1) {
-    $posts_arr = array();
-    $posts_arr['data'] = array();
     while ($row = $res->fetch()) {
         extract($row);
         $post_item = array(
@@ -32,9 +30,8 @@ if ($num == 1) {
             'fEmail' => $fEmail,
             'dNo' => $dNo,
         );
-        array_push($posts_arr['data'], $post_item);
     }
-    echo json_encode($posts_arr);
+    echo json_encode($post_item);
 } else {
     echo json_encode(array('message' => "no faculty found"));
 }
