@@ -22,11 +22,14 @@ $res = $post->loginFaculty();
 $num = $res->rowCount();
 
 if ($num = 1) {
-    echo json_encode(
-        array(
-            'message' => 'faculty logged in sucessfully'
-        )
+    $post->getSingleFaculty($post->fId);
+    $teacherInfoArray = array(
+        'fId' => $post->fId,
+        'fName' => $post->fName,
+        'fEmail' => $post->fEmail,
+        'dNo' => $post->dNo,
     );
+    echo json_encode($teacherInfoArray);
 } else {
     echo json_encode(
         array(

@@ -21,10 +21,12 @@ $post->phone = $data->phone;
 $post->password = $data->password;
 $post->dNo = $data->dNo;
 
+
+
 if ($post->registerStudent()) {
     echo json_encode(
         array(
-            'message' => 'Student created successfully c'
+            'message' => 'Student created successfully '
         )
     );
 } else {

@@ -26,7 +26,7 @@ $post->fId = $data->fId;
 if ($post->editFaculty()) {
     echo json_encode(
         array(
-            'message' => 'Faculty updated sucessfully'
+            'message' => 'Faculty updated sucessfully',
         )
     );
 } else {

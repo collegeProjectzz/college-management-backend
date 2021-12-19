@@ -16,18 +16,22 @@ $post = new Students($db);
 
 $data = json_decode(file_get_contents("php://input"));
 
-$post->email = $data->email;
+$post->rollNo = $data->rollNo;
 $post->password = $data->password;
 
 $res = $post->loginStudent();
 $num = $res->rowCount();
 
 if ($num = 1) {
-    echo json_encode(
-        array(
-            'message' => 'Student logged in sucessfully'
-        )
+    $post->getSingleStudent($post->rollNo);
+    $userInfoArray = array(
+        'rollNo' => $post->rollNo,
+        'name' => $post->name,
+        'email' => $post->email,
+        'phone' => $post->phone,
+        'dNo' => $post->dNo,
     );
+    echo json_encode($userInfoArray);
 } else {
     echo json_encode(
         array(
