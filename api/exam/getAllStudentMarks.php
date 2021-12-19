@@ -11,7 +11,9 @@ $db = $database->connect();
 
 $post = new Exam($db);
 $result = $post->getAllStudentMarks();
+
 $num = $result->rowCount();
+
 if ($num > 0) {
     $posts_arr = array();
     $posts_arr['data'] = array();
