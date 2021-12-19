@@ -51,15 +51,15 @@ class Students
 
     public function loginStudent()
     {
-        $sql = "SELECT * FROM  Students WHERE rollNo=:rollNo and password=:password";
+        $sql = "SELECT * FROM  Students WHERE email=:email and password=:password";
 
         $statement = $this->conn->prepare($sql);
 
 
-        $this->rollNo = htmlspecialchars(strip_tags($this->rollNo));
+        $this->email = htmlspecialchars(strip_tags($this->email));
         $this->password = htmlspecialchars(strip_tags($this->password));
 
-        $statement->bindParam(':rollNo', $this->rollNo);
+        $statement->bindParam(':email', $this->email);
         $statement->bindParam(':password', $this->password);
 
         $statement->execute();

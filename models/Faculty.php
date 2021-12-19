@@ -46,14 +46,14 @@ class Faculty
 
     public function loginFaculty()
     {
-        $sql = "SELECT * FROM  Faculty WHERE fId=:fId and fPassword=:fPassword";
+        $sql = "SELECT * FROM  Faculty WHERE fEmail=:fEmail and fPassword=:fPassword";
 
         $statement = $this->conn->prepare($sql);
 
-        $this->fId = htmlspecialchars(strip_tags($this->fId));
+        $this->fEmail = htmlspecialchars(strip_tags($this->fEmail));
         $this->fPassword = htmlspecialchars(strip_tags($this->fPassword));
 
-        $statement->bindParam(':fId', $this->fId);
+        $statement->bindParam(':fEmail', $this->fEmail);
         $statement->bindParam(':fPassword', $this->fPassword);
 
         $statement->execute();

@@ -16,26 +16,31 @@ $post = new Students($db);
 
 $data = json_decode(file_get_contents("php://input"));
 
-$post->rollNo = $data->rollNo;
+$post->email = $data->email;
 $post->password = $data->password;
 
 $res = $post->loginStudent();
 $num = $res->rowCount();
 
 if ($num = 1) {
-    $post->getSingleStudent($post->rollNo);
-    $userInfoArray = array(
-        'rollNo' => $post->rollNo,
-        'name' => $post->name,
-        'email' => $post->email,
-        'phone' => $post->phone,
-        'dNo' => $post->dNo,
-    );
-    echo json_encode($userInfoArray);
+    $posts_arr = array();
+    $posts_arr['data'] = array();
+    while ($row = $res->fetch()) {
+        extract($row);
+        $post_item = array(
+            'rollNo' => $rollNo,
+            'name' => $name,
+            'email' => $email,
+            'phone' => $phone,
+            'dNo' => $dNo,
+        );
+        array_push($posts_arr['data'], $post_item);
+    }
+    echo json_encode($posts_arr);
 } else {
     echo json_encode(
         array(
-            'message' => 'Error while signing up student'
+            'message' => 'Error while logging in as a student'
         )
     );
 }

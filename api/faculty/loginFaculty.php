@@ -15,25 +15,26 @@ $post = new Faculty($db);
 
 $data = json_decode(file_get_contents("php://input"));
 
-$post->fId = $data->fId;
+$post->fEmail = $data->fEmail;
 $post->fPassword = $data->fPassword;
 
 $res = $post->loginFaculty();
-$num = $res->rowCount();
 
-if ($num = 1) {
-    $post->getSingleFaculty($post->fId);
-    $teacherInfoArray = array(
-        'fId' => $post->fId,
-        'fName' => $post->fName,
-        'fEmail' => $post->fEmail,
-        'dNo' => $post->dNo,
-    );
-    echo json_encode($teacherInfoArray);
+$num = $res->rowCount();
+if ($num == 1) {
+    $posts_arr = array();
+    $posts_arr['data'] = array();
+    while ($row = $res->fetch()) {
+        extract($row);
+        $post_item = array(
+            'fId' => $fId,
+            'fName' => $fName,
+            'fEmail' => $fEmail,
+            'dNo' => $dNo,
+        );
+        array_push($posts_arr['data'], $post_item);
+    }
+    echo json_encode($posts_arr);
 } else {
-    echo json_encode(
-        array(
-            'message' => 'Error while signing up student'
-        )
-    );
+    echo json_encode(array('message' => "no faculty found"));
 }
