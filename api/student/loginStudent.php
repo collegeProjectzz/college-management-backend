@@ -1,6 +1,5 @@
 <?php
 
-
 header('Access-Control-Allow-Origin:*');
 header('Content-Type:application/json');
 header('Access-Control-Allow-Methods:POST');
@@ -23,8 +22,6 @@ $res = $post->loginStudent();
 $num = $res->rowCount();
 
 if ($num = 1) {
-    $posts_arr = array();
-    $posts_arr['data'] = array();
     while ($row = $res->fetch()) {
         extract($row);
         $post_item = array(
@@ -34,9 +31,8 @@ if ($num = 1) {
             'phone' => $phone,
             'dNo' => $dNo,
         );
-        array_push($posts_arr['data'], $post_item);
     }
-    echo json_encode($posts_arr);
+    echo json_encode($post_item);
 } else {
     echo json_encode(
         array(
