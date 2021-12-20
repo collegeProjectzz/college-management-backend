@@ -16,10 +16,10 @@ $post->rollNo = isset($_GET['rollNo']) ? $_GET['rollNo'] : die();
 $post->getStudentMarks();
 
 $post_arr = array(
-    'rollNo' => $rollNo,
-    'cId' => $cId,
-    'it1' => $it1,
-    'it2' => $it2,
+    'rollNo' => $post->rollNo,
+    'cId' => $post->cId,
+    'it1' => $post->it1,
+    'it2' => $post->it2,
 );
 
 print_r(json_encode($post_arr));

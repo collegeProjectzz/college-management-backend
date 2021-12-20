@@ -21,7 +21,8 @@ $post->password = $data->password;
 $res = $post->loginStudent();
 $num = $res->rowCount();
 
-if ($num = 1) {
+if ($num == 1) {
+    $post_item = array();
     while ($row = $res->fetch()) {
         extract($row);
         $post_item = array(
@@ -33,6 +34,12 @@ if ($num = 1) {
         );
     }
     echo json_encode($post_item);
+} else if ($num == 0) {
+    echo json_encode(
+        array(
+            'message' => 'No user exists with this user credentials'
+        )
+    );
 } else {
     echo json_encode(
         array(
