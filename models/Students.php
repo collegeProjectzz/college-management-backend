@@ -119,17 +119,4 @@ class Students
         printf("Error: %s \n", $stmt->error);
         return false;
     }
-
-    public function getSingleStudent($rollNo)
-    {
-        $sql = "SELECT * FROM Students WHERE rollNo=$rollNo;";
-        $statement = $this->conn->prepare($sql);
-        $statement->execute();
-        $row = $statement->fetch(PDO::FETCH_ASSOC);
-        $this->rollNo = $row['rollNo'];
-        $this->name = $row['name'];
-        $this->email = $row['email'];
-        $this->phone = $row['phone'];
-        $this->dNo = $row['dNo'];
-    }
 }

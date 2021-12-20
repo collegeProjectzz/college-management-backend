@@ -1,7 +1,4 @@
 <?php
-
-
-
 class Exam
 {
     private $conn;
@@ -27,16 +24,12 @@ class Exam
 
     public function getStudentMarks()
     {
-        $sql = "SELECT * FROM Exam WHERE rollNo=:rollNo";
+        $sql = "SELECT * FROM Exam JOIN Course ON Course.cId=Exam.cId JOIN Students ON Students.rollNo = Exam.rollNo WHERE Students.rollNo=:rollNo;";
         $statement = $this->conn->prepare($sql);
         $this->rollNo = htmlspecialchars(strip_tags($this->rollNo));
         $statement->bindParam(':rollNo', $this->rollNo);
         $statement->execute();
-        $row = $statement->fetch(PDO::FETCH_ASSOC);
-        $this->rollNo = $row['rollNo'];
-        $this->cId = $row['cId'];
-        $this->it1 = $row['it1'];
-        $this->it2 = $row['it2'];
+        return $statement;
     }
 
     public function insertItMarks()
