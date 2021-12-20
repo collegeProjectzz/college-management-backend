@@ -25,13 +25,13 @@ $post->it2 = $data->it2;
 if ($post->updateItMarks()) {
     echo json_encode(
         array(
-            'message' => 'Faculty updated sucessfully',
+            'message' => 'marks updated sucessfully',
         )
     );
 } else {
     echo json_encode(
         array(
-            'message' => 'Error while updating faculty'
+            'message' => 'Error while updating marks'
         )
     );
 }
