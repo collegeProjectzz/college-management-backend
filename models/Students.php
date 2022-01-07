@@ -27,7 +27,6 @@ class Students
             password=:password,
             dNo=:dNo";
 
-
         $statement = $this->conn->prepare($sql);
 
         $this->name = htmlspecialchars(strip_tags($this->name));

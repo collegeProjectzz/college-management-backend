@@ -14,6 +14,18 @@ class Exam
         $this->conn = $db;
     }
 
+    public function insertRollNo($rollNo, $cId)
+    {
+
+        $sql = "INSERT INTO Exam SET it1='-',it2='-',cId=$cId,rollNo=$rollNo";
+        $stmt = $this->conn->prepare($sql);
+        if ($stmt->execute()) {
+            return true;
+        };
+        printf("Error: %s \n", $stmt->error);
+        return false;
+    }
+
     public function getAllStudentMarks()
     {
         $sql = "SELECT * FROM Exam JOIN Course ON Course.cId=Exam.cId JOIN Students ON Students.rollNo = Exam.rollNo;";

@@ -38,4 +38,12 @@ class Enroll
         printf("Error: %s \n", $stmt->error);
         return false;
     }
+
+    public function getEnrolledCourse($rollNo)
+    {
+        $sql = "SELECT * FROM Enrolled";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt;
+    }
 }
