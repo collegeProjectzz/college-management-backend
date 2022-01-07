@@ -3,6 +3,7 @@
 class Enroll
 {
     private $conn;
+
     public $rollNo;
     public $cId;
 
@@ -15,11 +16,10 @@ class Enroll
     {
         $sql = "
             INSERT INTO
-                ENROLL 
-            VALUES(
-                rollNo=:rollNo;
-                cId:=cId
-            );
+                Enrolled 
+            SET
+                rollNo=:rollNo,
+                cId=:cId
         ";
         $stmt = $this->conn->prepare($sql);
 
