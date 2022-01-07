@@ -16,12 +16,9 @@ $post = new Enroll($db);
 $data = json_decode(file_get_contents("php://input"));
 
 
-$post->date = $data->date;
 $post->rollNo = $data->rollNo;
-$post->cId1 = $data->cId1;
-$post->cId2 = $data->cId2;
-$post->cId3 = $data->cId3;
-$post->cId4 = $data->cId4;
+$post->cId = $data->cId;
+
 
 if ($post->enrollStudent()) {
     echo json_encode(
