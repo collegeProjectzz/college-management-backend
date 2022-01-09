@@ -24,6 +24,7 @@ $post->email = $data->email;
 $post->phone = $data->phone;
 $post->password = $data->password;
 $post->dNo = $data->dNo;
+$post->cId = $data->cId;
 
 if ($post->registerStudent()) {
     $post->email = $data->email;
@@ -38,7 +39,7 @@ if ($post->registerStudent()) {
             $enn = $enroll->getEnrolledCourse($thatRollNo);
             $n = $enn->rowCount();
             if ($n == 1) {
-                while ($row = $enn->fetch()) {`
+                while ($row = $enn->fetch()) {
                     extract($row);
                     $exam->insertRollNo($thatRollNo, $cId);
                 }

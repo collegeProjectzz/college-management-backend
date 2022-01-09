@@ -9,6 +9,7 @@ class Faculty
     public $fEmail;
     public $fPassword;
     public $dNo;
+    public $cId;
 
     public function __construct($db)
     {

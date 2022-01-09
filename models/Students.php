@@ -24,6 +24,7 @@ class Students
             name=:name,
             email=:email,
             phone=:phone,
+            cId=:cId,
             password=:password,
             dNo=:dNo";
 
@@ -34,12 +35,14 @@ class Students
         $this->phone = htmlspecialchars(strip_tags($this->phone));
         $this->password = htmlspecialchars(strip_tags($this->password));
         $this->dNo = htmlspecialchars(strip_tags($this->dNo));
+        $this->cId = htmlspecialchars(strip_tags($this->cId));
 
         $statement->bindParam(':name', $this->name);
         $statement->bindParam(':email', $this->email);
         $statement->bindParam(':phone', $this->phone);
         $statement->bindParam(':password', $this->password);
         $statement->bindParam(':dNo', $this->dNo);
+        $statement->bindParam(':cId', $this->cId);
 
         if ($statement->execute()) {
             return true;
