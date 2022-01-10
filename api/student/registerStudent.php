@@ -14,8 +14,8 @@ $database = new DB();
 $db = $database->connect();
 
 $post = new Students($db);
-$exam = new Exam($db);
-$enroll = new Enroll($db);
+// $exam = new Exam($db);
+// $enroll = new Enroll($db);
 
 $data = json_decode(file_get_contents("php://input"));
 
@@ -24,28 +24,28 @@ $post->email = $data->email;
 $post->phone = $data->phone;
 $post->password = $data->password;
 $post->dNo = $data->dNo;
-$post->cId = $data->cId;
+$post->sem = $data->sem;
 
 if ($post->registerStudent()) {
-    $post->email = $data->email;
-    $post->password = $data->password;
-    $res = $post->loginStudent();
-    $num = $res->rowCount();
-    if ($num == 1) {
-        $post_item = array();
-        while ($row = $res->fetch()) {
-            extract($row);
-            $thatRollNo = $rollNo;
-            $enn = $enroll->getEnrolledCourse($thatRollNo);
-            $n = $enn->rowCount();
-            if ($n == 1) {
-                while ($row = $enn->fetch()) {
-                    extract($row);
-                    $exam->insertRollNo($thatRollNo, $cId);
-                }
-            }
-        }
-    }
+    // $post->email = $data->email;
+    // $post->password = $data->password;
+    // $res = $post->loginStudent();
+    // $num = $res->rowCount();
+    // if ($num == 1) {
+    //     $post_item = array();
+    //     while ($row = $res->fetch()) {
+    //         extract($row);
+    //         $thatRollNo = $rollNo;
+    //         $enn = $enroll->getEnrolledCourse($thatRollNo);
+    //         $n = $enn->rowCount();
+    //         if ($n == 1) {
+    //             while ($row = $enn->fetch()) {
+    //                 extract($row);
+    //                 $exam->insertRollNo($thatRollNo, $cId);
+    //             }
+    //         }
+    //     }
+    // }
     echo json_encode(
         array(
             'message' => 'Student created successfully '
