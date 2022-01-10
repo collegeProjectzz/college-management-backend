@@ -35,4 +35,14 @@ class Course
         $statement->execute();
         return $statement;
     }
+
+    public function getDeptCourses()
+    {
+        $sql = "SELECT * FROM Course WHERE dNo=:dNo;";
+        $statement = $this->conn->prepare($sql);
+        $this->dNo = htmlspecialchars(strip_tags($this->dNo));
+        $statement->bindParam(':dNo', $this->dNo);
+        $statement->execute();
+        return $statement;
+    }
 }
