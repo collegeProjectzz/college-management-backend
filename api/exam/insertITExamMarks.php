@@ -19,6 +19,10 @@ $data = json_decode(file_get_contents("php://input"));
 $post->cId = $data->cId;
 $post->it1 = $data->it1;
 $post->it2 = $data->it2;
+$post->it3 = $data->it3;
+$post->total = $data->total;
+$post->avg = $data->avg;
+$post->sem = $data->sem;
 $post->rollNo = $data->rollNo;
 
 if ($post->insertItMarks()) {

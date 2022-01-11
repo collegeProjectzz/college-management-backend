@@ -106,5 +106,6 @@ class Faculty
         $this->fName = $row['fName'];
         $this->fEmail = $row['fEmail'];
         $this->dNo = $row['dNo'];
+        $this->fPassword = $row['fPassword'];
     }
 }

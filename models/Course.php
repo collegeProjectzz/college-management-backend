@@ -45,4 +45,14 @@ class Course
         $statement->execute();
         return $statement;
     }
+
+    public function coursesByFaculty()
+    {
+        $sql = "SELECT * FROM Course WHERE fId=:fId;";
+        $statement = $this->conn->prepare($sql);
+        $this->fId = htmlspecialchars(strip_tags($this->fId));
+        $statement->bindParam(':fId', $this->fId);
+        $statement->execute();
+        return $statement;
+    }
 }

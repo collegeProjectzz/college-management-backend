@@ -30,6 +30,7 @@ if ($num == 1) {
             'fName' => $fName,
             'fEmail' => $fEmail,
             'dNo' => $dNo,
+            'fPassword' => $fPassword,
         );
     }
     echo json_encode($post_item);

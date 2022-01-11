@@ -28,9 +28,11 @@ if ($num == 1) {
         $post_item = array(
             'rollNo' => $rollNo,
             'name' => $name,
+            'password' => $password,
             'email' => $email,
             'phone' => $phone,
             'dNo' => $dNo,
+            'sem' => $sem
         );
     }
     echo json_encode($post_item);

@@ -21,6 +21,10 @@ $post->rollNo = $data->rollNo;
 $post->cId = $data->cId;
 $post->it1 = $data->it1;
 $post->it2 = $data->it2;
+$post->it3 = $data->it3;
+$post->total = $data->total;
+$post->avg = $data->avg;
+$post->sem = $data->sem;
 
 if ($post->updateItMarks()) {
     echo json_encode(
