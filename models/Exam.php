@@ -131,4 +131,14 @@ class Exam
         printf("Error: %s \n", $stmt->error);
         return false;
     }
+
+    public function SudentsIncourse()
+    {
+        $sql = "SELECT * FROM Exam JOIN Students ON Exam.rollNo=Students.rollNo WHERE Exam.cId=:cId;";
+        $statement = $this->conn->prepare($sql);
+        $this->cId = htmlspecialchars(strip_tags($this->cId));
+        $statement->bindParam(':cId', $this->cId);
+        $statement->execute();
+        return $statement;
+    }
 }
