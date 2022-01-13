@@ -17,6 +17,7 @@ $db = $database->connect();
 $post = new Exam($db);
 
 $post->rollNo = isset($_GET['rollNo']) ? $_GET['rollNo'] : die();
+$post->sem = isset($_GET['sem']) ? $_GET['sem'] : die();
 
 $result = $post->getStudentMarks();
 
@@ -52,5 +53,5 @@ if ($num > 0) {
     }
     echo json_encode($posts_arr);
 } else {
-    echo json_encode(array('message' => "no students found"));
+    echo json_encode(array('message' => "no students found", 'status' => 404));
 }

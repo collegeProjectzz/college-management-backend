@@ -40,10 +40,12 @@ class Exam
 
     public function getStudentMarks()
     {
-        $sql = "SELECT * FROM Exam JOIN Course ON Course.cId=Exam.cId JOIN Students ON Students.rollNo = Exam.rollNo WHERE Students.rollNo=:rollNo;";
+        $sql = "SELECT * FROM Exam JOIN Course ON Course.cId=Exam.cId JOIN Students ON Students.rollNo = Exam.rollNo WHERE Students.rollNo=:rollNo AND Exam.sem=:sem;";
         $statement = $this->conn->prepare($sql);
         $this->rollNo = htmlspecialchars(strip_tags($this->rollNo));
         $statement->bindParam(':rollNo', $this->rollNo);
+        $this->sem = htmlspecialchars(strip_tags($this->sem));
+        $statement->bindParam(':sem', $this->sem);
         $statement->execute();
         return $statement;
     }
